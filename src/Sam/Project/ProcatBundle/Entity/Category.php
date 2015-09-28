@@ -30,6 +30,13 @@ class Category
     private $name;
     
     /**
+     * @var level
+     * 
+     * @ORM\Column(name="category_level", type="integer")
+     */
+    private $level;
+    
+    /**
      * @ORM\OneToMany(targetEntity="Product", mappedBy="category")
      */
     protected $products;
