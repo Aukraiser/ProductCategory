@@ -1,0 +1,3 @@
+sam_project_procat_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: SamProjectProcatBundle:Default:index }

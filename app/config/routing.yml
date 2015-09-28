@@ -1,3 +1,7 @@
+sam_project_procat:
+    resource: "@SamProjectProcatBundle/Resources/config/routing.yml"
+    prefix:   /
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
