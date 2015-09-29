@@ -1,3 +1,11 @@
+sam_project_procat_category:
+    resource: "@SamProjectProcatBundle/Resources/config/routing/category.yml"
+    prefix:   /category
+
+sam_project_procat_product:
+    resource: "@SamProjectProcatBundle/Resources/config/routing/product.yml"
+    prefix:   /product
+
 sam_project_procat_homepage:
     path:     /hello/{name}
-    defaults: { _controller: SamProjectProcatBundle:Default:index }
+    defaults: { _controller: SamProjectProcatBundle:Default:index }    
