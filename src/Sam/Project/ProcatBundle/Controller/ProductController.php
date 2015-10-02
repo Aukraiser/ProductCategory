@@ -3,6 +3,7 @@
 namespace Sam\Project\ProcatBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Sam\Project\ProcatBundle\Entity\Product;
@@ -220,5 +221,21 @@ class ProductController extends Controller
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
+    }
+    
+    public function likeAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $product = $em->getRepository('SamProjectProcatBundle:Product')->find($id);
+        
+        if (!$product) {
+            throw $this->createNotFoundException('Unable to find Product entity.');
+        }
+        
+        $product->setLikes($product->getLikes()+1);
+        $em->flush();
+        
+        $response = new JsonResponse();
+        return $response->setData(array('likes' => $product->getLikes()));
     }
 }

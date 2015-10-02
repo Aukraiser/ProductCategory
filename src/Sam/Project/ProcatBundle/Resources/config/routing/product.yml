@@ -28,3 +28,8 @@ product_delete:
     path:     /{id}/delete
     defaults: { _controller: "SamProjectProcatBundle:Product:delete" }
     methods:  [POST, DELETE]
+
+product_like:
+    path:     /{id}/like
+    defaults: { _controller: "SamProjectProcatBundle:Product:like" }
+    

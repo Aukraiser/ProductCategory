@@ -8,6 +8,9 @@
             <tr>
                 <th>Id</th>
                 <th>Name</th>
+                <th>Left</th>
+                <th>Right</th>
+                <th>Root</th>
                 <th>Level</th>
                 <th>Actions</th>
             </tr>
@@ -17,7 +20,10 @@
             <tr>
                 <td><a href="{{ path('category_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                 <td>{{ entity.name }}</td>
-                <td>{{ entity.level }}</td>
+                <td>{{ entity.lft }}</td>
+                <td>{{ entity.rgt }}</td>
+                <td>{{ entity.root }}</td>
+                <td>{{ entity.lvl }}</td>
                 <td>
                 <ul>
                     <li>

@@ -5,9 +5,10 @@ namespace Sam\Project\ProcatBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Sam\Project\ProcatBundle\Repository\CategoryRepository;
 
 class CategoryType extends AbstractType
-{
+{   
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -15,10 +16,13 @@ class CategoryType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', 'text')
-            ->add('level', 'number')
-            ->add('parent', new CategoryType())
-        ;
+            ->add('name')
+            ->add('parent', 'entity', array(
+                'class' =>'SamProjectProcatBundle:Category',
+                'query_builder' => function (CategoryRepository $cr) {
+                    return $cr->createQueryBuilder('c')
+                    ->orderBy('c.name', 'ASC');
+            }));
     }
     
     /**

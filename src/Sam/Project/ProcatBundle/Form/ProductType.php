@@ -5,6 +5,8 @@ namespace Sam\Project\ProcatBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Sam\Project\ProcatBundle\Form\CategoryType;
+use Sam\Project\ProcatBundle\Repository\CategoryRepository;
 
 class ProductType extends AbstractType
 {
@@ -16,8 +18,15 @@ class ProductType extends AbstractType
     {
         $builder
             ->add('name', 'text')
-            ->add('likes', 'number')
-            ->add('category')
+            ->add('likes', 'number', array('attr' => array('class' => 'likes')))
+            ->add('category', 'entity', array(
+                'class' => 'SamProjectProcatBundle:Category',
+                'query_builder' => function (CategoryRepository $cr){
+                    return $cr->createQueryBuilder('c')
+                        ->where('c.lvl = 2')
+                        ->orderBy('c.name', 'ASC');
+                }
+            ))
         ;
     }
     
